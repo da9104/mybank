@@ -1,0 +1,36 @@
+import express from 'express';
+import { createClient } from '../server/supabase.ts';
+
+const router = express.Router();
+
+router.get('/google', async (req, res) => {
+  const supabase = createClient(req, res);
+  
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: `${process.env.VITE_SERVER_URL || 'http://localhost:4000'}/api/auth/callback`,
+    },
+  });
+
+  if (error) return res.status(500).send(error.message);
+  res.redirect(data.url); // Sends user to Google's login page
+});
+
+router.get('/callback', async (req, res) => {
+  const { code } = req.query;
+  const supabase = createClient(req, res);
+
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code as string);
+    if (error) {
+        console.error('Error exchanging code for session:', error);
+        return res.redirect('/login?error=auth-failed');
+    }
+  }
+
+  res.redirect('/');
+});
+
+
+export default router;
