@@ -5,12 +5,12 @@ import express from 'express'
 import cors from 'cors'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
-import { createClient } from './server/supabase.ts';
-import router from './server/index.ts';
+import { createClient } from './server/supabase';
+import router from './server/index';
 import cookieParser from 'cookie-parser';
-import authRoutes from './api/auth.ts';
-import weatherRouter from './api/weatherRoute.ts';
-import accountRouter from './api/account.ts';
+import authRoutes from './api/auth';
+import weatherRouter from './api/weatherRoute';
+import accountRouter from './api/account';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

@@ -1,5 +1,5 @@
 import { createServer, IncomingMessage, ServerResponse } from 'http'
-import { app } from '../server.ts'
+import { app } from '../server'
 
 // Vercel serverless handler
 export default async function handler(req: IncomingMessage, res: ServerResponse) {

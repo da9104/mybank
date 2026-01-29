@@ -1,11 +1,11 @@
 import express from 'express';
-import { createClient } from '../server/supabase.ts';
+import { createClient } from '../server/supabase';
 
 const router = express.Router();
 
 router.get('/google', async (req, res) => {
   const supabase = createClient(req, res);
-  
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
@@ -24,8 +24,8 @@ router.get('/callback', async (req, res) => {
   if (code) {
     const { error } = await supabase.auth.exchangeCodeForSession(code as string);
     if (error) {
-        console.error('Error exchanging code for session:', error);
-        return res.redirect('/login?error=auth-failed');
+      console.error('Error exchanging code for session:', error);
+      return res.redirect('/login?error=auth-failed');
     }
   }
 
