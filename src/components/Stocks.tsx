@@ -39,7 +39,7 @@ export default function Stocks() {
             }
         };
 
-        // fetchStocks();
+        fetchStocks();
     }, []);
 
     return (

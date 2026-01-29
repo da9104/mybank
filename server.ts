@@ -17,7 +17,7 @@ const __dirname = dirname(__filename)
 export const app = express()
 
 app.use(cors({
-  origin: `${process.env.NODE_ENV !== 'production' ? 'http://localhost:4000' : process.env.VITE_SERVER_UR}`,
+  origin: `${process.env.NODE_ENV !== 'production' ? 'http://localhost:4000' : process.env.VITE_SERVER_URL}`,
   credentials: true
 }));
 
@@ -50,7 +50,8 @@ if (!isProduction) {
   const compression = (await import('compression')).default
   const sirv = (await import('sirv')).default
   app.use(compression() as express.RequestHandler)
-  app.use(base, sirv(join(__dirname, 'dist/client'), { extensions: [], index: false }) as express.RequestHandler)
+  //   app.use(base, sirv(join(__dirname, 'dist/client'), { extensions: [], index: false }) as express.RequestHandler)
+  app.use(base, sirv(join(__dirname, 'dist/client'), { extensions: [], ignores: ['index.html'] }) as express.RequestHandler)
 }
 
 // Mount the router

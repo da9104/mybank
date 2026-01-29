@@ -101,8 +101,7 @@ export default function IndexCard() {
             }
         };
 
-        console.log(stocks);
-        // fetchIndex();
+        fetchIndex();
     }, []);
 
     const getLabel = (symbol: string) => {

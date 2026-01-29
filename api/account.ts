@@ -252,7 +252,7 @@ router.post('/withdraw-money', async (req, res) => {
 
         if (error) {
             console.error('Error updating balance:', error);
-            return res.status(500).json({ error: error.message });
+            return res.status(500).json(error);
         }
 
         // Record transaction
