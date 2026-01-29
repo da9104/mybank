@@ -1,7 +1,7 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api/index.ts" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/index.js" }],
   "functions": {
-    "api/index.ts": {
+    "api/index.js": {
       "includeFiles": "dist/client/**"
     }
   }
