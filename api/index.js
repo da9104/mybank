@@ -2,7 +2,7 @@ import { createServer, IncomingMessage, ServerResponse } from 'http'
 import { app } from '../server.js'
 
 // Vercel serverless handler
-export default async function handler(req: IncomingMessage, res: ServerResponse) {
+export default async function handler(req, res) {
   return new Promise((resolve) => {
     // Convert Vercel req to Node http.IncomingMessage
     const httpReq = req
